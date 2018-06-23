@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import RenderBooks from './RenderBooks';
-import { STATUS_CODES } from 'http';
 
 class ListBooks extends Component {
     handleStatusChange = (book, status) => {
-        console.log('books', book, status)
         this.props.onStatusChange(book, status)
     }
 
     render () {
+        const  currentlyReading  = this.props.books.filter((e) => e.shelf === "currentlyReading")
+        const wantToRead  = this.props.books.filter((e) => e.shelf === "wantToRead")
+        const  read  = this.props.books.filter((e) => e.shelf === "read")
+
         return (
             <div className="list-books">
                 <div className="list-books-title">
@@ -17,18 +19,24 @@ class ListBooks extends Component {
                 </div>
                 <div className="list-books-content">
                     <div>
-                    <div className="bookshelf">
-                        <h2 className="bookshelf-title">Currently Reading</h2>
-                        <RenderBooks books={this.props.books} status="currently_reading" handleStatusChanged={(book, status) => this.handleStatusChange(book, status)} />
-                    </div>
-                    <div className="bookshelf">
-                        <h2 className="bookshelf-title">Want to Read</h2>
-                        <RenderBooks books={this.props.books} status="want_to_read" handleStatusChanged={(book, status) => this.handleStatusChange(book, status)} />
-                    </div>
-                    <div className="bookshelf">
-                        <h2 className="bookshelf-title">Read</h2>
-                        <RenderBooks books={this.props.books} status="read" handleStatusChanged={(book, status) => this.handleStatusChange(book, status)} />
-                    </div>
+                        <div className="bookshelf">
+                            <h2 className="bookshelf-title">Currently Reading</h2>
+                            { currentlyReading.length > 0 &&
+                                <RenderBooks books={currentlyReading} handleStatusChanged={(book, status) => this.handleStatusChange(book, status)} />
+                            }
+                        </div>                        
+                        <div className="bookshelf">
+                            <h2 className="bookshelf-title">Want to Read</h2>
+                            { wantToRead.length > 0 &&
+                                <RenderBooks books={wantToRead} handleStatusChanged={(book, status) => this.handleStatusChange(book, status)} />
+                            }
+                        </div>
+                        <div className="bookshelf">
+                            <h2 className="bookshelf-title">Read</h2>
+                            { read.length > 0 &&
+                                <RenderBooks books={read} handleStatusChanged={(book, status) => this.handleStatusChange(book, status)} />
+                            }
+                        </div>
                     </div>
                 </div>
                 <div className="open-search">
