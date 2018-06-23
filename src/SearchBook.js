@@ -28,19 +28,26 @@ class SearchBook extends Component {
     }
 
     searchBook = (query) => {
-        BooksAPI.search(query)
-        .then((results) => {
-            const values = []
-            if (results.error === undefined) {
-                for (let o of results) {
-                    const x = this.updateShelfValue(o)
-                    values.push(x)
-                }
-            }
+        if (query === '') {
             this.setState(() => ({
-                results : values
+                results : []
             }))
-        })
+        }
+        else {
+            BooksAPI.search(query)
+            .then((results) => {
+                const values = []
+                if (results.error === undefined) {
+                    for (let o of results) {
+                        const x = this.updateShelfValue(o)
+                        values.push(x)
+                    }
+                }
+                this.setState(() => ({
+                    results : values
+                }))
+            })
+        }
     }
 
 
