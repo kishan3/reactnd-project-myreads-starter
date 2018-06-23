@@ -24,7 +24,6 @@ class BooksApp extends React.Component {
   componentDidMount () {
     BooksAPI.getAll()
     .then((books) => {
-        console.log('Books on main page:', books)
         this.setState(() => ({
             books
         }))
@@ -48,8 +47,7 @@ class BooksApp extends React.Component {
                   onStatusChange={(book, shelf) => {this.handleStatusChange(book, shelf)}}
                 />
             )} />
-        }
-        
+        }        
       </div>
     )
   }
