@@ -24,17 +24,20 @@ class BooksApp extends React.Component {
   componentDidMount () {
     BooksAPI.getAll()
     .then((books) => {
+        console.log('Books on main page:', books)
         this.setState(() => ({
             books
         }))
     })
+    
   }
 
   render() {
     return (
       <div className="app">
         <Route path="/search" render={() => (
-          <SearchBook 
+          <SearchBook
+            books={this.state.books} 
             onStatusChange={(book, shelf) => {this.handleStatusChange(book, shelf)}}  
           />
         )} />
