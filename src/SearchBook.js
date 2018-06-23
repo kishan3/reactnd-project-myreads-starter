@@ -11,7 +11,7 @@ class SearchBook extends Component {
     updateQuery = (query) => {
         const books = this.searchBook(query)
         this.setState(() => ({
-            query : query.trim(),
+            query : query,
             books
         }))    
     }
@@ -31,10 +31,12 @@ class SearchBook extends Component {
         BooksAPI.search(query)
         .then((results) => {
             const values = []
-            for (let o of results) {
-                const x = this.updateShelfValue(o)
-                values.push(x)
-              }
+            if (results.error === undefined) {
+                for (let o of results) {
+                    const x = this.updateShelfValue(o)
+                    values.push(x)
+                }
+            }
             this.setState(() => ({
                 results : values
             }))
@@ -63,7 +65,8 @@ class SearchBook extends Component {
                                 <li key={book.id}>
                                     <div className="book">
                                         <div className="book-top">
-                                        <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${book.imageLinks.thumbnail}")` }}></div>
+                                        {book.imageLinks &&
+                                        <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${book.imageLinks.thumbnail}")` }}></div>}
                                         <div className="book-shelf-changer">
                                             <select defaultValue={book.shelf} onChange={(event) => this.props.onStatusChange(book, event.target.value)} >
                                                 <option value="move" disabled>Move to...</option>
