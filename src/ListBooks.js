@@ -21,21 +21,15 @@ class ListBooks extends Component {
                     <div>
                         <div className="bookshelf">
                             <h2 className="bookshelf-title">Currently Reading</h2>
-                            { currentlyReading.length > 0 &&
-                                <RenderBooks books={currentlyReading} handleStatusChanged={(book, status) => this.handleStatusChange(book, status)} />
-                            }
+                            <RenderBooks books={currentlyReading} handleStatusChanged={(book, status) => this.handleStatusChange(book, status)} />
                         </div>                        
                         <div className="bookshelf">
                             <h2 className="bookshelf-title">Want to Read</h2>
-                            { wantToRead.length > 0 &&
-                                <RenderBooks books={wantToRead} handleStatusChanged={(book, status) => this.handleStatusChange(book, status)} />
-                            }
+                            <RenderBooks books={wantToRead} handleStatusChanged={(book, status) => this.handleStatusChange(book, status)} />
                         </div>
                         <div className="bookshelf">
                             <h2 className="bookshelf-title">Read</h2>
-                            { read.length > 0 &&
-                                <RenderBooks books={read} handleStatusChanged={(book, status) => this.handleStatusChange(book, status)} />
-                            }
+                            <RenderBooks books={read} handleStatusChanged={(book, status) => this.handleStatusChange(book, status)} />
                         </div>
                     </div>
                 </div>

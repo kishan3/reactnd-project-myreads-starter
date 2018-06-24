@@ -40,14 +40,13 @@ class BooksApp extends React.Component {
             onStatusChange={(book, shelf) => {this.handleStatusChange(book, shelf)}}  
           />
         )} />
-        { this.state.books.length > 0 && 
-            <Route exact path="/" render={() => (
-                <ListBooks
-                  books={this.state.books}
-                  onStatusChange={(book, shelf) => {this.handleStatusChange(book, shelf)}}
-                />
-            )} />
-        }        
+        <Route exact path="/" render={() => (
+            <ListBooks
+              books={this.state.books}
+              onStatusChange={(book, shelf) => {this.handleStatusChange(book, shelf)}}
+            />
+        )} />
+    
       </div>
     )
   }

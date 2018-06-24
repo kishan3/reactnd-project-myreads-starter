@@ -57,7 +57,7 @@ class SearchBook extends Component {
 
 
     render () {
-        const {query} = this.state;
+        const {query, results} = this.state;
         return (
             <div className="search-books">
                 <div className="search-books-bar">
@@ -70,9 +70,9 @@ class SearchBook extends Component {
                         />
                     </div>
                 </div>
-                {this.state.results &&
+                {results &&
                     <div className="search-books-results">
-                        <RenderBooks books={this.state.results} handleStatusChanged={(book, status) => this.handleStatusChange(book, status)} />
+                        <RenderBooks books={results} handleStatusChanged={(book, status) => this.handleStatusChange(book, status)} />
                     </div>
                 }
             </div>
