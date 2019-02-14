@@ -8,4 +8,6 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
+  background-image: url("./icons/header.svg");
+  background-size: cover;
 }

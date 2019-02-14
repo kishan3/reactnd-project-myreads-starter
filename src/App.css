@@ -1,18 +1,21 @@
 html, body, .root {
   height: 100%;
+  background-image: url("./icons/header.svg") !important;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 body {
   line-height: 1.5;
 }
 body, .app {
-  background: white;
+  /*background: white;*/
 }
 
 /* main page */
 
 .list-books-title {
   padding: 10px 0;
-  background: #2e7c31;
+  /*background: #2e7c31;*/
   text-align: center;
 }
 .list-books-title h1 {
